@@ -1,0 +1,169 @@
+{
+  "dialogs": [
+    {
+      "user": {
+        "_id": "53443rrvfffe1",
+        "fullname": "Хеченец Алан",
+        "isOnline": true,
+        "unreaded": 8,
+        "avatar": "https://sun7-13.userapi.com/s/v1/ig2/9F5rI2MEEezcIK4zW9D-NZru_yWpuc8lmWmsX96egNo27yoKFldLWRAw31wSKOyfxX2URz5xFpgLC0_alKD-fzoI.jpg?size=50x50&quality=95&crop=192,61,850,850&ava=1"
+      },
+      "lastMessage": {
+        "text": "Привет, ты где находишься",
+        "isChecked": false,
+        "isMe": false,
+        "created_at": "2022-02-06"
+      },
+      "isActive": false
+    },
+    {
+      "user": {
+        "_id": "53443rrvfffe2",
+        "avatar": "",
+        "fullname": "Чеченец Алан",
+        "isOnline": true,
+        "unreaded": 8
+      },
+      "lastMessage": {
+        "text": "Привет, ты где находишься",
+        "isChecked": false,
+        "isMe": false,
+        "created_at": "2021-07-07"
+      },
+      "isActive": false
+    },
+    {
+      "user": {
+        "_id": "53443rrvfffe3",
+        "fullname": "Хеченец Алан",
+        "isOnline": true,
+        "unreaded": 8,
+        "avatar": "https://sun7-13.userapi.com/s/v1/ig2/9F5rI2MEEezcIK4zW9D-NZru_yWpuc8lmWmsX96egNo27yoKFldLWRAw31wSKOyfxX2URz5xFpgLC0_alKD-fzoI.jpg?size=50x50&quality=95&crop=192,61,850,850&ava=1"
+      },
+      "lastMessage": {
+        "text": "Привет, ты где находишься",
+        "isChecked": false,
+        "isMe": false,
+        "created_at": "2022-11-11"
+      },
+      "isActive": false
+    },
+    {
+      "user": {
+        "_id": "53443rrvfffe4",
+        "avatar": "",
+        "fullname": "Чеченец Алан",
+        "isOnline": true,
+        "unreaded": 8
+      },
+      "lastMessage": {
+        "text": "Привет, ты где находишься",
+        "isChecked": false,
+        "isMe": false,
+        "created_at": "2022-09-10"
+      },
+      "isActive": false
+    }
+  ],
+  "messages": [
+    {
+      "_id": "36320f593dc2e37a7b2b72938",
+      "text": "Quis amet labore mollit et veniam. Magna amet non deserunt eu veniam mollit incididunt qui ullamco eu officia et. Adipisicing irure veniam enim ipsum fugiat culpa minim velit Lorem deserunt incididunt quis.",
+      "created_at": "Sun Apr 04 2004 05:51:41 GMT+0400 (GMT+04:00)",
+      "user": {
+        "_id": "16320f5931cf32f218e5e008f",
+        "fullname": "PhelpsShepherd",
+        "avatar": null
+      },
+      "dialog": "53443rrvfffe1"
+    },
+    {
+      "_id": "36320f59388864c727873e9ab",
+      "text": "Irure adipisicing proident deserunt esse laboris occaecat amet ut sunt cupidatat mollit ea. In cillum magna id adipisicing velit duis nostrud aliqua nostrud. Aliquip laboris ad aliquip in minim pariatur aliqua aliqua in.",
+      "created_at": "Sat Jul 17 1993 07:51:37 GMT+0400 (GMT+04:00)",
+      "user": {
+        "_id": "16320f593c9820d6c796192c3",
+        "fullname": "CantuJoyce",
+        "avatar": null
+      },
+      "dialog": "53443rrvfffe1"
+    },
+    {
+      "_id": "46320f5930711fc10bf5eae3e",
+      "text": "Sunt dolor sint magna velit aute tempor. Quis adipisicing amet Lorem enim deserunt mollit quis culpa aliqua pariatur eiusmod labore ad officia. Pariatur laboris fugiat aliqua ex.",
+      "created_at": "Mon Aug 28 2000 09:52:45 GMT+0400 (GMT+04:00)",
+      "user": {
+        "_id": "16320f5939869da9778dcc3d5",
+        "fullname": "YangDouglas",
+        "avatar": null
+      },
+      "dialog": "53443rrvfffe1"
+    },
+    {
+      "_id": "36320f593484a5f2f73c8b696",
+      "text": "Voluptate ut veniam dolore nulla in commodo tempor veniam voluptate pariatur. Aliquip nostrud nostrud nulla eu nulla nisi dolor. Do do exercitation deserunt qui sint.",
+      "created_at": "Tue Apr 13 2010 12:51:19 GMT+0400 (GMT+04:00)",
+      "user": {
+        "_id": "26320f59395eb8ae02e8d0cc5",
+        "fullname": "MarisaFoster",
+        "avatar": null
+      },
+      "dialog": "53443rrvfffe1"
+    },
+    {
+      "_id": "16320f593b641318135346d99",
+      "text": "Anim quis laborum ad nisi nostrud quis mollit in ad ea nulla aliquip. Quis Lorem commodo minim ipsum. Officia mollit occaecat veniam consectetur sit sint occaecat officia Lorem nulla sint ad.",
+      "created_at": "Tue Feb 18 1975 10:49:12 GMT+0400 (GMT+04:00)",
+      "user": {
+        "_id": "36320f5939029e620a844a367",
+        "fullname": "PriceBenton",
+        "avatar": null
+      },
+      "dialog": "53443rrvfffe1"
+    },
+    {
+      "_id": "46320f59390be1232dd39e211",
+      "text": "Duis non ipsum minim est Lorem mollit. Reprehenderit nostrud consequat enim ea. Minim do commodo nisi aliquip amet nostrud mollit reprehenderit culpa adipisicing qui.",
+      "created_at": "Mon Feb 28 2000 03:34:44 GMT+0300 (GMT+04:00)",
+      "user": {
+        "_id": "46320f593adb918b47da742f9",
+        "fullname": "MaxineFox",
+        "avatar": null
+      },
+      "dialog": "53443rrvfffe1"
+    },
+    {
+      "_id": "36320f593d7c88b967c4bf732",
+      "text": "Deserunt irure sit aliqua proident. Aute anim aliqua cupidatat cupidatat esse ad amet elit consequat ipsum ipsum. Laborum aute in eiusmod non aliqua consequat laboris eiusmod in.",
+      "created_at": "Tue Feb 13 2007 08:12:05 GMT+0300 (GMT+04:00)",
+      "user": {
+        "_id": "46320f593e279ecd9244334ba",
+        "fullname": "TinaGray",
+        "avatar": null
+      },
+      "dialog": "53443rrvfffe1"
+    },
+    {
+      "_id": "46320f5930d98124cea86ca23",
+      "text": "Pariatur aliquip et exercitation cupidatat commodo reprehenderit laborum duis incididunt commodo veniam. Minim laborum ipsum ut elit officia. Aute nulla non consequat sint dolore officia aliquip.",
+      "created_at": "Sun May 22 2016 12:04:46 GMT+0400 (GMT+04:00)",
+      "user": {
+        "_id": "16320f59344267770ec379c5c",
+        "fullname": "GarrisonBennett",
+        "avatar": null
+      },
+      "dialog": "53443rrvfffe1"
+    },
+    {
+      "_id": "46320f593b9bdb8896859d96c",
+      "text": "Est velit exercitation eiusmod Lorem minim excepteur sunt aute velit tempor dolore ut ex elit. Voluptate incididunt ipsum proident aliqua ex cillum voluptate eu anim et deserunt veniam. Eu labore amet labore incididunt labore in quis cillum ad consequat amet.",
+      "created_at": "Sat May 24 1997 01:01:21 GMT+0400 (GMT+04:00)",
+      "user": {
+        "_id": "16320f593e5c0729727591f8c",
+        "fullname": "HorneEaton",
+        "avatar": null
+      },
+      "dialog": "53443rrvfffe1"
+    }
+  ]
+}
