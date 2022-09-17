@@ -1,12 +1,18 @@
 import mongoose, { Schema } from "mongoose";
+import isEmail from "validator/lib/isEmail";
 
 const UserSchema = new Schema(
   {
-    email: String,
+    email: {
+      type: String,
+      required: true,
+      validate: [isEmail, "Invalidate Email"],
+      unique: true,
+    },
     avatar: String,
-    fullname: String,
-    password: String,
-    confirmed: Boolean,
+    fullname: { type: String, required: true },
+    password: { type: String, required: true },
+    confirmed: { type: String, default: false },
     confirm_hash: String,
     last_seen: Date,
   },
@@ -15,6 +21,6 @@ const UserSchema = new Schema(
   }
 );
 
-const User = mongoose.model('User', UserSchema)
+const UserModel = mongoose.model("User", UserSchema);
 
-export default User;
+export default UserModel;

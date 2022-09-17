@@ -1,18 +1,23 @@
 import mongoose from "mongoose";
 import express from "express";
+import bodyParser from "body-parser";
 
-import User from "./schemas/User";
+import UserModel from "./schemas/User";
+import {UserCotroller} from "./controllers"
 
 const app = express();
+app.use(bodyParser.json());
+
+const User = new UserCotroller()
 
 mongoose.connect("mongodb://localhost:27017/chat");
 
-app.get("/", (_, res) => {
-  res.send("hello")
-  const user = new User({ email: "hello@a.com", fullname: "Pete Dare" });
-  user.save().then(() => console.log("user saved"));
-});
+app.get('/user/:id', User.index)
+
+app.post("/user/create", User.create);
 
 app.listen(9000, () => {
-  console.log(123);
+  console.log(
+    "http://localhost:9000 is started\n http://localhost:9000/create"
+  );
 });
