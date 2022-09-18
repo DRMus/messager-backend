@@ -1,5 +1,8 @@
 import mongoose, { Schema } from "mongoose";
 import isEmail from "validator/lib/isEmail";
+import mongooseHidden from "mongoose-hidden";
+
+import { IUserModel } from "./interfaces";
 
 const UserSchema = new Schema(
   {
@@ -21,6 +24,8 @@ const UserSchema = new Schema(
   }
 );
 
-const UserModel = mongoose.model("User", UserSchema);
+// UserSchema.plugin(mongooseHidden, { hidden: { password: true } });
+
+const UserModel = mongoose.model<IUserModel>("User", UserSchema);
 
 export default UserModel;

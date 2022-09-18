@@ -7,15 +7,23 @@ class UserCotroller {
     const id: string = req.params.id;
     UserModel.findById(id, (err: any, user: IUserModel) => {
       if (err) {
-        res.status(404).json({
+        return res.status(404).json({
           message: "user not found",
         });
       } else if (user) {
         res.json(user);
-      } else {
-        res.status(404).json({
-          message: "user not found",
+      }
+    });
+  }
+
+  show(req: express.Request, res: express.Response) {
+    UserModel.find({}, (err: any, user: IUserModel) => {
+      if (err) {
+        return res.status(404).json({
+          message: "users not found",
         });
+      } else if (user) {
+        res.json(user);
       }
     });
   }
