@@ -23,7 +23,6 @@ app.post("/dialogs/create", Dialog.create);
 
 app.get("/dialog/messages/:id", Messages.index);
 app.get("/dialog/messages/", Messages.show);
-app.post("/dialog/create", Messages.create);
 app.put("/dialog/add/:id", Messages.createMessage)
 
 app.listen(9000, () => {

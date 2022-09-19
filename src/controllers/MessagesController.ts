@@ -1,6 +1,6 @@
 import express from "express";
-import { MessagesModel } from "../schemas";
-import { IMessagesModel } from "../schemas/interfaces";
+import { MessagesModel, DialogModel } from "../schemas";
+import { IMessagesModel, IDialogModel } from "../schemas/interfaces";
 
 class MessagesCotroller {
   index(req: express.Request, res: express.Response) {
@@ -28,23 +28,13 @@ class MessagesCotroller {
     });
   }
 
-  create(req: express.Request, res: express.Response) {
-    const postData = {
-      dialog_id: req.body.dialog_id,
-    };
-    const message = new MessagesModel(postData);
-    message
-      .save()
-      .then((obj) => {
-        this.createMessage(req, res);
-      })
-      .catch((err) => {
-        return res.send(err);
-      });
-  }
-
   createMessage(req: express.Request, res: express.Response) {
     let dialog: string = req.params.id ? req.params.id : req.body.dialog_id;
+    if (!dialog) {
+      return res.send({
+        message: "DialogId is empty",
+      });
+    }
     const putData = {
       author: req.body.author,
       text: req.body.text,
@@ -56,7 +46,18 @@ class MessagesCotroller {
         if (err) {
           return res.json(err);
         } else {
-          return res.json(obj);
+          DialogModel.updateOne(
+            {
+              _id: dialog,
+            },
+            { lastMessage: putData },
+            (err: any, obj: any) => {
+              if (err) {
+                return res.json(err);
+              }
+            }
+          );
+          res.json(obj);
         }
       }
     );
@@ -64,7 +65,3 @@ class MessagesCotroller {
 }
 
 export default MessagesCotroller;
-
-// .then(() => {
-//   this.createMessage(req, res)
-// })

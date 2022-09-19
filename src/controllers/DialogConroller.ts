@@ -1,14 +1,15 @@
 import express from "express";
-import { DialogModel } from "../schemas";
-import { IDialogModel } from "../schemas/interfaces";
+import { DialogModel, MessagesModel } from "../schemas";
+import { IDialogModel, IMessagesModel } from "../schemas/interfaces";
 
 class DialogCotroller {
   index(req: express.Request, res: express.Response) {
     const authorId: string = req.params.id;
-    DialogModel.find(
-      {
-        $or: [{ partner: authorId }, { author: authorId }],
-      },).populate(["author", "partner"]).exec((err, dialogs) => {
+    DialogModel.find({
+      $or: [{ partner: authorId }, { author: authorId }],
+    })
+      .populate(["author", "partner"])
+      .exec((err, dialogs) => {
         if (err) {
           return res.status(404).json({
             message: "Dialogs is empty",
@@ -16,7 +17,7 @@ class DialogCotroller {
         } else if (dialogs) {
           res.json(dialogs);
         }
-      })
+      });
   }
 
   show(req: express.Request, res: express.Response) {
@@ -39,11 +40,23 @@ class DialogCotroller {
     const dialog = new DialogModel(postData);
     dialog
       .save()
-      .then((obj) => {
-        res.json(obj);
+      .then((dialog: IDialogModel) => {
+        const sendObj : Array<object> = [];
+        sendObj.push(dialog);
+        const message = new MessagesModel({ dialog_id: dialog._id });
+        message
+          .save()
+          .then((dialogMessages: IMessagesModel) => {
+            sendObj.push(dialogMessages)
+            res.send(sendObj)
+          })
+          .catch((err) => {
+            return res.send(err);
+          });
+        
       })
       .catch((err) => {
-        res.send(err);
+        return res.send(err);
       });
   }
 }
