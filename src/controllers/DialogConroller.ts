@@ -1,10 +1,12 @@
 import express from "express";
 import { DialogModel, MessagesModel } from "../schemas";
-import { IDialogModel, IMessagesModel } from "../schemas/interfaces";
+import { IDialogModel, IMessagesModel, IUserModel } from "../schemas/interfaces";
+
 
 class DialogCotroller {
   index(req: express.Request, res: express.Response) {
-    const authorId: string = req.params.id;
+    const userRequest = req.user as IUserModel;
+    const authorId: string = userRequest._id;
     DialogModel.find({
       $or: [{ partner: authorId }, { author: authorId }],
     })

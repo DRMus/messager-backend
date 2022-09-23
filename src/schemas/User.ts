@@ -1,8 +1,10 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Callback, Schema } from "mongoose";
 import isEmail from "validator/lib/isEmail";
 import mongooseHidden from "mongoose-hidden";
+import bcrypt from "bcrypt";
 
 import { IUserModel } from "./interfaces";
+import { comparePassword, verifyUserPassword } from "../utils";
 
 const UserSchema = new Schema(
   {
@@ -24,7 +26,20 @@ const UserSchema = new Schema(
   }
 );
 
-// UserSchema.plugin(mongooseHidden, { hidden: { password: true } });
+UserSchema.pre("save", function (next) {
+  var user = this;
+
+  if (!user.isModified("password")) return next();
+
+  verifyUserPassword(user.password)
+    .then((hash) => {
+      user.password = hash;
+      next();
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
 
 const UserModel = mongoose.model<IUserModel>("User", UserSchema);
 

@@ -5,6 +5,9 @@ export interface IUserModel extends Document {
   fullname: string;
   password: string;
   confirmed: boolean;
+  avatar?: String,
+  confirm_hash?: String,
+  last_seen?: Date,
   createdAt: Date;
   updatedAt: Date;
 }

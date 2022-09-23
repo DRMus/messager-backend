@@ -1,6 +1,10 @@
 import express from "express";
+
 import { UserModel } from "../schemas";
 import { IUserModel } from "../schemas/interfaces";
+import { comparePassword, createJWToken } from "../utils";
+import { IUserData } from "../utils/interfaces";
+import { loginValidation } from "../utils/validation";
 
 class UserCotroller {
   index(req: express.Request, res: express.Response) {
@@ -43,6 +47,51 @@ class UserCotroller {
       .catch((err) => {
         res.send(err);
       });
+  }
+
+  login(req: express.Request, res: express.Response) {
+    const postData = {
+      email: req.body.email,
+      password: req.body.password,
+    };
+
+    // const errors = loginValidation(postData)
+
+    UserModel.findOne(
+      { email: postData.email },
+      (err: any, user: IUserModel) => {
+        if (err) {
+          return res.status(404).json({
+            message: "user not found",
+          });
+        } else {
+          comparePassword(postData.password, user.password)
+            .then((isMatch) => {
+              if (!isMatch) {
+                return res.json({
+                  status: "error",
+                  message: "incorrect password or email",
+                });
+              }
+
+              const token = createJWToken(user);
+
+              res.json({
+                status: "success",
+                token: token,
+              });
+            })
+            .catch((err) => {
+              if (err) {
+                return res.json({
+                  status: "error",
+                  message: err,
+                });
+              }
+            });
+        }
+      }
+    );
   }
 }
 
