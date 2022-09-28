@@ -5,7 +5,7 @@ import { IMessagesModel } from "./interfaces";
 
 const MessagesSchema = new Schema(
   {
-    dialog_id: {type: String, require: true},
+    dialog_id: {type: Schema.Types.ObjectId, ref: "Dialog", require: true},
     messages: [MessageSchema],
   },
   {

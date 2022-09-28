@@ -9,7 +9,6 @@ export default function verifyJWTToken(token: string | string[]) {
         if (err || !decodedToken) {
           return reject(err);
         } else if (typeof decodedToken !== "string") {
-          console.log(decodedToken);
           resolve(decodedToken);
         }
       });

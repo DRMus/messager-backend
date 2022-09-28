@@ -1,13 +1,19 @@
 import express from "express";
+import { validationResult } from "express-validator";
+import ISockets from "../interfaces";
 
 import { UserModel } from "../schemas";
 import { IUserModel } from "../schemas/interfaces";
 import { comparePassword, createJWToken } from "../utils";
-import { IUserData } from "../utils/interfaces";
-import { loginValidation } from "../utils/validation";
 
 class UserCotroller {
-  index(req: express.Request, res: express.Response) {
+  io: ISockets.IServerIO;
+
+  constructor(io: ISockets.IServerIO) {
+    this.io = io;
+  }
+
+  index = (req: express.Request, res: express.Response) => {
     const id: string = req.params.id;
     UserModel.findById(id, (err: any, user: IUserModel) => {
       if (err) {
@@ -20,7 +26,7 @@ class UserCotroller {
     });
   }
 
-  show(req: express.Request, res: express.Response) {
+  show = (_req: express.Request, res: express.Response) => {
     UserModel.find({}, (err: any, user: IUserModel) => {
       if (err) {
         return res.status(404).json({
@@ -32,7 +38,7 @@ class UserCotroller {
     });
   }
 
-  create(req: express.Request, res: express.Response) {
+  create = (req: express.Request, res: express.Response) => {
     const postData = {
       email: req.body.email,
       fullname: req.body.fullname,
@@ -49,18 +55,30 @@ class UserCotroller {
       });
   }
 
-  login(req: express.Request, res: express.Response) {
+  getMe = (req: express.Request, res: express.Response) => {
+    const userData = req.user as IUserModel;
+    if (userData) {
+      return res.json(userData);
+    } else {
+      return res.status(404).json({ message: "user not found" });
+    }
+  }
+
+  login = (req: express.Request, res: express.Response) => {
     const postData = {
       email: req.body.email,
       password: req.body.password,
     };
 
-    // const errors = loginValidation(postData)
+    const errors = validationResult(postData);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ message: errors.array() });
+    }
 
     UserModel.findOne(
       { email: postData.email },
       (err: any, user: IUserModel) => {
-        if (err) {
+        if (err || !user) {
           return res.status(404).json({
             message: "user not found",
           });

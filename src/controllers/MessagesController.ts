@@ -1,10 +1,18 @@
 import express from "express";
+import ISockets from "../interfaces";
 import { MessagesModel, DialogModel } from "../schemas";
-import { IMessagesModel, IDialogModel } from "../schemas/interfaces";
+import { IMessagesModel, IUserModel } from "../schemas/interfaces";
 
 class MessagesCotroller {
-  index(req: express.Request, res: express.Response) {
-    const id: string = req.params.id;
+  io: ISockets.IServerIO;
+
+  constructor(io: ISockets.IServerIO) {
+    this.io = io;
+  }
+
+  index = (req: express.Request, res: express.Response) => {
+    const userRequest = req.user as IUserModel;
+    const id: string = userRequest._id;
     MessagesModel.findById(id, (err: any, messages: IMessagesModel) => {
       if (err) {
         return res.status(404).json({
@@ -16,7 +24,7 @@ class MessagesCotroller {
     });
   }
 
-  show(req: express.Request, res: express.Response) {
+  show = (req: express.Request, res: express.Response) => {
     MessagesModel.find({}, (err: any, messages: IMessagesModel) => {
       if (err) {
         return res.status(404).json({
@@ -28,15 +36,17 @@ class MessagesCotroller {
     });
   }
 
-  createMessage(req: express.Request, res: express.Response) {
-    let dialog: string = req.params.id ? req.params.id : req.body.dialog_id;
+  createMessage = (req: express.Request, res: express.Response) => {
+    const userRequest = req.user as IUserModel;
+    const dialogReq = req.body as IMessagesModel
+    const dialog: string = dialogReq.dialog_id;
     if (!dialog) {
       return res.send({
         message: "DialogId is empty",
       });
     }
     const putData = {
-      author: req.body.author,
+      author: userRequest._id,
       text: req.body.text,
     };
     MessagesModel.updateOne(
